@@ -1,12 +1,15 @@
+import React from 'react'
 import { ChakraProvider } from '@chakra-ui/react'
-import Navbar from "./components/Navbar"
-import ItemListContainer from './components/ItemListContainer'
+import { MainRouter } from './routes'
+import { MainLayout } from './layout'
 
 function App() {
   return (
     <ChakraProvider>
-      <Navbar />
-      <ItemListContainer greeting="Bienvenidos a la tienda de artículos D&D" />
+      <MainLayout>
+        <MainRouter />
+      </MainLayout>
+      
     </ChakraProvider>
   )
 }
