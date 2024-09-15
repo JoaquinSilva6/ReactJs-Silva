@@ -1,11 +1,12 @@
 import React from 'react'
 import { useParams } from 'react-router'
-import { useProductByIndex } from '../hooks/useProductByIndex'
+import { useProductById } from '../hooks'
 import { ItemDetailContainer } from '../components/ItemDetailContainer/ItemDetailContainer'
 export const Item = () => {
-  const { index } = useParams()
+  const { id } = useParams()
+  const { product } = useProductById(id)
 
-  const { product } = useProductByIndex(index)
+
   return (
     <ItemDetailContainer product={product}/>
   )

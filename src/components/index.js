@@ -1,4 +1,4 @@
-export * from "./CardWidget"
+export * from "./CartWidget"
 export * from "./ItemListContainer"
 export * from "./NavBar"
 export * from "./ItemDetailContainer"

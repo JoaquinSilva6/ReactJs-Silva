@@ -1,2 +1,4 @@
 export * from "./useProducts"
-export * from "./useProductByIndex"
+export * from "./useProductById"
+export * from "./useCategory"
+export * from "./useProductsByCategory"

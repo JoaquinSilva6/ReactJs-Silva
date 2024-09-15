@@ -12,49 +12,61 @@ import {
   Stack,
   useColorMode,
   Center,
-} from '@chakra-ui/react'
-import { MoonIcon, SunIcon } from '@chakra-ui/icons'
-import { GiDiceTwentyFacesTwenty } from "react-icons/gi"
-import {CartWidget} from "../CartWidget"
-import { Link } from 'react-router-dom'
+} from "@chakra-ui/react";
+import { MoonIcon, SunIcon } from "@chakra-ui/icons";
+import { CartWidget } from "../CartWidget";
+import { useCategory } from "../../hooks";
 
+export const NavBar = () => {
+  const { colorMode, toggleColorMode } = useColorMode();
 
+  const { category } = useCategory();
 
-export const Navbar = () => {
-  const { colorMode, toggleColorMode } = useColorMode()
   return (
     <>
-      <Box bg={useColorModeValue('gray.100', 'gray.900')} px={4}>
-        <Flex h={16} alignItems={'center'} justifyContent={'space-between'}>
-          <Box display={"flex"} alignItems={"center"} >
-            <GiDiceTwentyFacesTwenty size={"40px"} /> Dices & Drops
+      <Box bg={useColorModeValue("gray.100", "gray.900")} px={4}>
+        <Flex h={16} alignItems={"center"} justifyContent={"space-between"}>
+          <Box>
+            <a href="/">Dice&Drops</a>
           </Box>
-
-          <Flex alignItems={'center'}>
-            <Stack direction={'row'} spacing={7}>
+          <Menu>
+            <MenuButton cursor="pointer" style={{ marginLeft: 30 }}>
+              Categorias
+            </MenuButton>
+            <MenuList height={"300px"} overflowY={"scroll"}>
+              {category.map((category) => (
+                <MenuItem key={category.slug}>
+                  <a href={`/category/${category.slug}`}>{category.name}</a>
+                </MenuItem>
+              ))}
+            </MenuList>
+          </Menu>
+          <Flex alignItems={"center"}>
+            <Stack direction={"row"} spacing={7}>
               <CartWidget />
               <Button onClick={toggleColorMode}>
-                {colorMode === 'light' ? <MoonIcon /> : <SunIcon />}
+                {colorMode === "light" ? <MoonIcon /> : <SunIcon />}
               </Button>
 
               <Menu>
                 <MenuButton
                   as={Button}
-                  rounded={'full'}
-                  variant={'link'}
-                  cursor={'pointer'}
-                  minW={0}>
+                  rounded={"full"}
+                  variant={"link"}
+                  cursor={"pointer"}
+                  minW={0}
+                >
                   <Avatar
-                    size={'sm'}
-                    src={'https://avatars.dicebear.com/api/male/username.svg'}
+                    size={"sm"}
+                    src={"https://avatars.dicebear.com/api/male/username.svg"}
                   />
                 </MenuButton>
-                <MenuList alignItems={'center'}>
+                <MenuList alignItems={"center"}>
                   <br />
                   <Center>
                     <Avatar
-                      size={'2xl'}
-                      src={'https://avatars.dicebear.com/api/male/username.svg'}
+                      size={"2xl"}
+                      src={"https://avatars.dicebear.com/api/male/username.svg"}
                     />
                   </Center>
                   <br />
@@ -73,5 +85,5 @@ export const Navbar = () => {
         </Flex>
       </Box>
     </>
-  )
-}
+  );
+};

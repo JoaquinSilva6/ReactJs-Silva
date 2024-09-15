@@ -1,9 +1,8 @@
-import { Navbar } from "../components/NavBar/Navbar"
-
+import { NavBar } from "../components/NavBar";
 export const MainLayout = ({children}) => {
     return(
         <div>
-            <Navbar/>
+            <NavBar/>
                 {children}
             <div>footer</div>
         </div>

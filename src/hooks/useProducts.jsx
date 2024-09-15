@@ -1,5 +1,5 @@
 import React from "react"
-import { getMagicItems } from "../services/products.service"
+import { getAllProducts } from "../services/products.service"
 
 
     export const useProducts = () => {
@@ -7,10 +7,12 @@ import { getMagicItems } from "../services/products.service"
         const [loading, setLoading] = React.useState(true)
       
         React.useEffect(() => {
-          getMagicItems().then((items) => {
-            setProducts(items)
+          getAllProducts().then((items) => {
+            setProducts(items.data.products)
             setLoading(false)
-          })
+          }).catch((error) => {
+            console.log(error)
+        })
         }, [])
       
         return { products, loading }

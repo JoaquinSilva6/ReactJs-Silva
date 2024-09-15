@@ -1,20 +1,47 @@
-import React from 'react'
-import { Box, Grid, Text } from '@chakra-ui/react'
-import Button from 'react-bootstrap/Button'
-import { Link } from 'react-router-dom'
+import {
+  Box,
+  Card,
+  Stack,
+  Heading,
+  CardBody,
+  Divider,
+  CardFooter,
+  ButtonGroup,
+  Image,
+  Text,
+} from "@chakra-ui/react";
+export const ItemListContainer = ({products}) => {
 
-export const ItemListContainer = ({ products }) => {
   return (
-    <Grid templateColumns="repeat(4, 1fr)" gap={6}>
+    <Box display={"flex"} flexWrap={"wrap"} key={1}>
       {products.map((product) => (
-        <Box key={product.index} borderWidth="1px" borderRadius="lg" overflow="hidden" p="5">
-          <Text mt="2" fontWeight="bold">{product.name}</Text>
-          <Text>${product.price}</Text>
-          <Button variant="outline-info">
-            <Link to={`/item/${product.index}`}>Comprar</Link>
-          </Button>
-        </Box>
+        <Card key={product.id} maxW="sm" margin={"1rem"}>
+          <CardBody>
+            <Image
+              src={product.thumbnail}
+              alt={product.name}
+              borderRadius="lg"
+            />
+            <Stack mt="6" spacing="3">
+              <Heading size="md">{product.title}</Heading>
+              <Text>{product.description}</Text>
+              <Text color="blue.600" fontSize="2xl">
+                {product.price}
+              </Text>
+            </Stack>
+          </CardBody>
+          <Divider />
+          <CardFooter>
+            <ButtonGroup spacing="2">
+              <a href={`/item/${product.id}`}>
+                {" "}
+                Comprar{" "}
+              </a>
+            </ButtonGroup>
+          </CardFooter>
+        </Card>
       ))}
-    </Grid>
-  )
-}
+    </Box>
+  );
+  
+};
