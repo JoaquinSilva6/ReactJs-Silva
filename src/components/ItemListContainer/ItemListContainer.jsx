@@ -9,39 +9,54 @@ import {
   ButtonGroup,
   Image,
   Text,
+  Flex,
+  Button,
 } from "@chakra-ui/react";
-export const ItemListContainer = ({products}) => {
+import { Link } from "react-router-dom";
 
-  return (
-    <Box display={"flex"} flexWrap={"wrap"} key={1}>
+export const ItemListContainer = ({ products }) => {
+  return products.length === 0 ? (
+    <Box textAlign="center" mt="20">
+      No hay productos para mostrar
+    </Box>
+  ) : (
+    <Flex justify="center" align="center" wrap="wrap" p={4}>
       {products.map((product) => (
-        <Card key={product.id} maxW="sm" margin={"1rem"}>
+        <Card
+          key={product.id}
+          maxW="sm"
+          m={4}
+          boxShadow="lg"
+          borderRadius="md"
+          overflow="hidden"
+        >
           <CardBody>
             <Image
               src={product.thumbnail}
               alt={product.name}
               borderRadius="lg"
+              objectFit="cover"
+              w="100%"
+              h="200px"
             />
             <Stack mt="6" spacing="3">
               <Heading size="md">{product.title}</Heading>
-              <Text>{product.description}</Text>
+              <Text noOfLines={2}>{product.description}</Text>
               <Text color="blue.600" fontSize="2xl">
-                {product.price}
+                ${product.price}
               </Text>
             </Stack>
           </CardBody>
           <Divider />
           <CardFooter>
             <ButtonGroup spacing="2">
-              <a href={`/item/${product.id}`}>
-                {" "}
-                Comprar{" "}
-              </a>
+              <Button as={Link} to={`/item/${product.id}`} bgColor={"lightblue"} textColor={"black"}>
+                Más detalles
+              </Button>
             </ButtonGroup>
           </CardFooter>
         </Card>
       ))}
-    </Box>
+    </Flex>
   );
-  
 };

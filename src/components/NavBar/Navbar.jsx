@@ -15,6 +15,7 @@ import {
 } from "@chakra-ui/react";
 import { MoonIcon, SunIcon } from "@chakra-ui/icons";
 import { CartWidget } from "../CartWidget";
+import { Link } from "react-router-dom";
 import { useCategory } from "../../hooks";
 
 export const NavBar = () => {
@@ -27,16 +28,16 @@ export const NavBar = () => {
       <Box bg={useColorModeValue("gray.100", "gray.900")} px={4}>
         <Flex h={16} alignItems={"center"} justifyContent={"space-between"}>
           <Box>
-            <a href="/">Dice&Drops</a>
+            <Link to="/">El Super</Link>
           </Box>
           <Menu>
-            <MenuButton cursor="pointer" style={{ marginLeft: 30 }}>
+            <MenuButton as={Link} cursor="pointer" style={{ marginLeft: 30 }}>
               Categorias
             </MenuButton>
             <MenuList height={"300px"} overflowY={"scroll"}>
               {category.map((category) => (
                 <MenuItem key={category.slug}>
-                  <a href={`/category/${category.slug}`}>{category.name}</a>
+                  <Link to={`/category/${category.slug}`}>{category.name}</Link>
                 </MenuItem>
               ))}
             </MenuList>

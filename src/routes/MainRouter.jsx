@@ -1,15 +1,19 @@
-import React from 'react'
-import { BrowserRouter,Routes, Route } from 'react-router-dom'
-import { Home, Item, Category } from '../pages'
+import React from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Category, Checkout, Home, Item, Payment } from "../pages";
+import { NavBar } from "../components";
 
 export const MainRouter = () => {
   return (
     <BrowserRouter>
-        <Routes>
-        <Route path='/' element={<Home/>}/>
-        <Route path='/item/:id' element={<Item/>}/>
-        <Route path='/category/:categoryId' element={<Category/>}/>
-        </Routes>
+      <NavBar />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/item/:id" element={<Item />} />
+        <Route path="/category/:categoryId" element={<Category />} />
+        <Route path="/checkout" element={<Checkout />} />
+        <Route path="/payment" element={<Payment />} />
+      </Routes>
     </BrowserRouter>
-)
-}
+  );
+};

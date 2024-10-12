@@ -1,11 +1,13 @@
-import React from 'react'
-import { ItemListContainer } from '../components/ItemListContainer/ItemListContainer'
-import { useProducts } from '../hooks'
+import React from "react";
+import { ItemListContainer, Loader } from "../components";
+import { useProducts } from "../hooks/useProducts";
 
 export const Home = () => {
+  const { products, loading } = useProducts();
 
-  const { products} = useProducts()
-  return (
+  return loading ? (
+    <Loader />
+  ) : (
     <ItemListContainer products={products} />
-  )
-}
+  );
+};
